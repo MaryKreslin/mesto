@@ -10,7 +10,7 @@
 }
 
 @media (max-width: 320px) {
-    .popup__name{
+    .popup__name {
         margin-top: 75px;
     }
 }

@@ -5,16 +5,16 @@
     position: absolute;
     margin-left: 400px;
     margin-top: -74px;
-   
+
 }
 
-.popup__close-button:hover{
+.popup__close-button:hover {
     cursor: pointer;
     opacity: .6;
 }
 
 @media (max-width: 320px) {
-    .popup__close-button{
+    .popup__close-button {
         width: 20px;
         height: 20px;
         margin-left: 222px;

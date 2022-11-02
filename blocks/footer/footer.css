@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 425px) {
-    .footer{
+    .footer {
         max-width: 88.125%;
         padding: 48px 0 19px;
     }
