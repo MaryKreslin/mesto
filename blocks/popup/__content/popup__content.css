@@ -11,7 +11,7 @@
     flex-direction: column;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 550px) {
     .popup__content {
         max-width: 88.125%;
         min-height: 361px;
