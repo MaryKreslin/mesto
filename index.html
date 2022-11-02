@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./page/index.css">
+    <title>Место</title>
+</head>
+
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <img class="profile__avatar" src="./images/custo.jpg" alt="Фото Жак-Ив Кусто">
+            <div class="profile__info">
+                <div class="profile__string1">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-button"></button>
+                </div>
+                <p class="profile__about">Исследователь океана</p>
+            </div>
+            <button class="profile__add-button"></button>
+        </section>
+        <!--Галерея фото-->
+        <section class="elements">
+            <div class="element">
+                <img class="element__image" src="./images/karachaevsk.jpg" alt="Сентинский храм, Карачаево-Черкесия">
+                <div class="element__title">
+                    <p class="element__text">Карачаевск</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+                <div class="element__title">
+                    <p class="element__text">Гора Эльбрус</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/dombai.jpg" alt="Фото горы Эльбрус и ее лесных склонов">
+                <div class="element__title">
+                    <p class="element__text">Домбай</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/kamchtka.jpg" alt="Вулкан Толбачик и горное озеро">
+                <div class="element__title">
+                    <p class="element__text">Камчатка</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/krapivna-1-1024x680.jpg" alt="Никольский храм в селе Крапивна Тульской области">
+                <div class="element__title">
+                    <p class="element__text">Крапивна</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+            <div class="element">
+                <img class="element__image" src="./images/rayzan.jpg" alt="Паномара Рязанского кремля">
+                <div class="element__title">
+                    <p class="element__text">Рязань</p>
+                    <button class="element__like"></button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__text"> &copy; 2020 Mesto Russia</p>
+    </footer>
+
+    <div class="popup">
+        <div class="popup__content">
+            <div class="popup__close-button"></div>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input type="text" class="popup__name" value="Жак-Ив Кусто">
+            <input type="text" class="popup__about" value="Исследователь океана">
+            <input type="submit" class="popup__save-button" value="Сохранить">
+        </div>
+
+    </div>
+</body>
+<script src="./script/script.js" defer></script>
+
+</html>
