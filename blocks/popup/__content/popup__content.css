@@ -14,7 +14,7 @@
 
 @media (max-width: 550px) {
     .popup__content {
-        max-width: 88.125%;
+        max-width: 282px;
         min-height: 322px;
         padding: 25px 22px;
     }
