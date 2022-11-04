@@ -14,9 +14,7 @@
     </header>
     <main class="content">
         <section class="profile">
-            <div class="profile__avatar">
-                <img class="profile__image" src="./images/custo.jpg" alt="Фото Жак-Ив Кусто">
-            </div>
+            <img class="profile__avatar" src="./images/custo.jpg" alt="Фото Жак-Ив Кусто">
             <div class="profile__info">
                 <div class="profile__string">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -29,56 +27,43 @@
         <!--Галерея фото-->
         <section class="elements">
             <div class="element">
-                <div class="element__image-place">
-                    <img class="element__image" src="./images/karachaevsk.jpg"
-                        alt="Сентинский храм, Карачаево-Черкесия">
-                </div>
+                <img class="element__image" src="./images/karachaevsk.jpg" alt="Сентинский храм, Карачаево-Черкесия">
                 <div class="element__title">
                     <p class="element__text">Карачаевск</p>
                     <button class="element__like" type="button"></button>
                 </div>
             </div>
             <div class="element">
-                <div class="element__image-place">
-                    <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-                </div>
+                <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
                 <div class="element__title">
                     <p class="element__text">Гора Эльбрус</p>
                     <button class="element__like" type="button"></button>
                 </div>
             </div>
             <div class="element">
-                <div class="element__image-place">
-                    <img class="element__image" src="./images/dombai.jpg" alt="Фото горы Эльбрус и ее лесных склонов">
-                </div>
+                <img class="element__image" src="./images/dombai.jpg" alt="Фото горы Эльбрус и ее лесных склонов">
                 <div class="element__title">
                     <p class="element__text">Домбай</p>
                     <button class="element__like" type="button"></button>
                 </div>
             </div>
             <div class="element">
-                <div class="element__image-place">
-                    <img class="element__image" src="./images/kamchtka.jpg" alt="Вулкан Толбачик и горное озеро">
-                </div>
+                <img class="element__image" src="./images/kamchtka.jpg" alt="Вулкан Толбачик и горное озеро">
                 <div class="element__title">
                     <p class="element__text">Камчатка</p>
                     <button class="element__like" type="button"></button>
                 </div>
             </div>
             <div class="element">
-                <div class="element__image-place">
-                    <img class="element__image" src="./images/krapivna-1-1024x680.jpg"
-                        alt="Никольский храм в селе Крапивна Тульской области">
-                </div>
+                <img class="element__image" src="./images/krapivna-1-1024x680.jpg"
+                    alt="Никольский храм в селе Крапивна Тульской области">
                 <div class="element__title">
                     <p class="element__text">Крапивна</p>
                     <button class="element__like" type="button"></button>
                 </div>
             </div>
             <div class="element">
-                <div class="element__image-place">
-                    <img class="element__image" src="./images/rayzan.jpg" alt="Паномара Рязанского кремля">
-                </div>
+                <img class="element__image" src="./images/rayzan.jpg" alt="Паномара Рязанского кремля">
                 <div class="element__title">
                     <p class="element__text">Рязань</p>
                     <button class="element__like" type="button"></button>
@@ -90,14 +75,14 @@
         <p class="footer__text"> &copy; 2020 Mesto Russia</p>
     </footer>
     <div class="popup">
-        <form class="popup__content" name="editProfile" method="get">
-            <button class="popup__item popup__item_el_close-button" type="button"></button>
+        <button class="popup__close-button" type="button"></button>
+        <form class="popup__content" name="editProfile">
             <h2 class="popup__title">Редактировать профиль</h2>
             <input type="text" class="popup__item popup__item_el_name" id="avatar-name" name="avatar-name"
-                value="Жак-Ив Кусто">
+                value="">
             <input type="text" class="popup__item popup__item_el_about" id="avatar-about" name="avatar-about"
-                value="Исследователь океана">
-            <input type="submit" class="popup__item popup__item_el_save-button" value="Сохранить">
+                value="">
+            <input type="submit" class="popup__save-button" value="Сохранить">
         </form>
     </div>
     <script src="./script/index.js" defer></script>

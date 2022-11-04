@@ -1,4 +1,5 @@
 .profile__about {
+    width: 100%;
     margin: 0;
     font-weight: 400;
     font-size: 18px;
@@ -15,7 +16,7 @@
     }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 550px) {
     .profile__about {
         font-size: 14px;
         line-height: 17px;

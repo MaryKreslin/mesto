@@ -6,14 +6,16 @@ let jobInfo = document.querySelector('.profile__about');
 let cards = document.querySelectorAll('.element');
 
 const editButton = document.querySelector('.profile__edit-button');
-const closeButton = formElement.querySelector('.popup__item_el_close-button');
-const saveButton = formElement.querySelector('.popup__item_el_save-button');
+const closeButton = formElement.querySelector('.popup__close-button');
+const saveButton = formElement.querySelector('.popup__save-button');
 
 //Открытие формы
 function openPopup() {
     formElement.classList.add('popup_opened');
     const tempName = nameInfo.textContent;
     const tempJob = jobInfo.textContent;
+    nameInput.value = tempName;
+    jobInput.value = tempJob;
 }
 
 //Закрытие формы
