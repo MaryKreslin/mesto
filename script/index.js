@@ -12,10 +12,8 @@ const saveButton = formElement.querySelector('.popup__save-button');
 //Открытие формы
 function openPopup() {
     formElement.classList.add('popup_opened');
-    const tempName = nameInfo.textContent;
-    const tempJob = jobInfo.textContent;
-    nameInput.value = tempName;
-    jobInput.value = tempJob;
+    nameInput.value = nameInfo.textContent;
+    jobInput.value = jobInfo.textContent;
 }
 
 //Закрытие формы
@@ -34,12 +32,8 @@ for (let i = 0; i <= cards.length - 1; i++) {
 //Функция сохранения данных и закрытия формы
 function formSubmitHandler(evt) {
     evt.preventDefault();
-    let newName = nameInput.value;
-    let newJob = jobInput.value;
-    tempName = newName;
-    tempJob = newJob;
-    nameInfo.textContent = tempName;
-    jobInfo.textContent = tempJob;
+    nameInfo.textContent = nameInput.value;
+    jobInfo.textContent = jobInput.value;
     closePopup();
 }
 
