@@ -3,6 +3,7 @@
     height: 19px;
     margin: 5px 5px -1px 0;
     background: url(../../../images/like.svg) center no-repeat;
+    background-size: 22px 19px;
     border: none;
 }
 
