@@ -24,7 +24,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+const forms = document.querySelectorAll('.popup');
 let popupEdit = document.querySelector('.popup_type_edit');
 let popupAdd = document.querySelector('.popup_type_add');
 let ImageForm = document.querySelector('.popup_type_image');
@@ -50,19 +50,26 @@ const inputPlaceLink = popupAdd.querySelector('#place-link');
 const img = ImageForm.querySelector('.popup__image');
 const cap = ImageForm.querySelector('.popup__caption');
 
-//Открытие формы
+//положение кнопки X
+const closeButtonPosition = (form, btn, formW, formH, dx, dy) => {
+  const w = window.innerWidth - 17;
+  const h = window.innerHeight;
+  if (form.clientWidth >= 550) {
+    btn.style.left = `${(w - formW) / 2 + formW + 8}px`;
+    btn.style.top = `${((h - formH) / 2) - (40 + dx)}px`;
+  }
+  else {
+    btn.style.left = `${((w - formW) / 2) + formW - 20}px`;
+    btn.style.top = `${((h - formH) / 2) - (36 + dy)}px`;
+  };
+}
+
+//Открытие форм
 const openPopupAdd = () => {
   popupAdd.classList.add('popup_opened');
   const formW = popupAdd.querySelector('.popup__content').clientWidth;
   const formH = popupAdd.querySelector('.popup__content').clientHeight;
-  if (popupAdd.clientWidth >= 550) {
-    closeAddButton.style.left = `${(popupAdd.clientWidth - formW) / 2 + formW + 8}px`;
-    closeAddButton.style.top = `${((popupAdd.clientHeight - formH) / 2) - 40}px`;
-  }
-  else {
-    closeAddButton.style.left = `${((popupAdd.clientWidth - formW) / 2) + formW - 20}px`;
-    closeAddButton.style.top = `${((popupAdd.clientHeight - formH) / 2) - 36}px`;
-  };
+  closeButtonPosition(popupAdd, closeAddButton, formW, formH, 0, 0);
 }
 
 const openPopupEdit = () => {
@@ -71,18 +78,11 @@ const openPopupEdit = () => {
   jobInput.value = jobInfo.textContent;
   const formW = popupEdit.querySelector('.popup__content').clientWidth;
   const formH = popupEdit.querySelector('.popup__content').clientHeight;
-  if (popupEdit.clientWidth >= 550) {
-    closeEditButton.style.left = `${((popupEdit.clientWidth - formW) / 2) + formW + 8}px`;
-    closeEditButton.style.top = `${((popupEdit.clientHeight - formH) / 2) - 40}px`;
-  }
-  else {
-    closeEditButton.style.left = `${((popupEdit.clientWidth - formW) / 2) + formW - 20}px`;
-    closeEditButton.style.top = `${((popupEdit.clientHeight - formH) / 2) - 36}px`;
-  }
+  closeButtonPosition(popupEdit, closeEditButton, formW, formH, 0, 0);
 }
+
 //Закрытие формы
 const closePopup = (form) => {
-  console.log(form);
   form.classList.remove('popup_opened');
 }
 
@@ -94,27 +94,26 @@ const formSubmitHandler = (evt) => {
   closePopup(popupEdit);
 }
 
+//Удаление карточки
 const handleDeleteCard = (evt) => {
   evt.target.closest('.element').remove();
 }
 
+//Лайк
 const handleLike = (evt) => {
   evt.target.closest('.element__like').classList.toggle('element__like_type_active');
 }
 
+//Открытие формы картинки
 const handleOpenImage = (evt) => {
   ImageForm.classList.add('popup_opened');
   img.src = evt.target.src;
   cap.textContent = evt.target.closest('.element').querySelector('.element__text').textContent;
-if (ImageForm.clientWidth >= 550) {
-  closeImageButton.style.left = `${((ImageForm.clientWidth - img.clientWidth) / 2) + img.clientWidth + 8}px`;
-  closeImageButton.style.top = `${((ImageForm.clientHeight - img.clientHeight) / 2) - 48}px`;
+  const imgW = img.clientWidth;
+  const imgH = img.clientHeight;
+  closeButtonPosition(ImageForm, closeImageButton, imgW, imgH, 8, 12);
 }
-else {
-  closeImageButton.style.left = `${((ImageForm.clientWidth - img.clientWidth) / 2) + img.clientWidth - 20}px`;
-  closeImageButton.style.top = `${((ImageForm.clientHeight - img.clientHeight) / 2) - 48}px`;
-}
-}
+
 //Создание новой карточки
 const createNewCard = (dataCard) => {
   const newCard = cardTemplate.cloneNode(true);
@@ -132,10 +131,10 @@ const createNewCard = (dataCard) => {
   const cardLike = newCard.querySelector('.element__like');
   cardLike.addEventListener('click', handleLike);
   return newCard;
-
 }
-const formSubmitNewCard = (event) => {
-  event.preventDefault();
+
+const formSubmitNewCard = (evt) => {
+  evt.preventDefault();
   renderCard({ name: inputPlacename.value, link: inputPlaceLink.value });
   closePopup(popupAdd);
 }
@@ -144,10 +143,34 @@ const renderCard = (dataCard) => {
   cards.prepend(createNewCard(dataCard));
 };
 
+const resizeHandle = (evt) => {
+  evt.preventDefault();
+  forms.forEach((form, index) => {
+    if (form.classList.contains('popup_opened')) {
+      const f = form;
+      const btn = f.querySelector('.popup__close-button');
+
+      if ((index == 0) || (index == 1)) {
+        let dx = 0;
+        let dy = 0;
+        let fw = f.querySelector('.popup__content').clientWidth;
+        let fh = f.querySelector('.popup__content').clientHeight;
+        closeButtonPosition(f, btn, fw, fh, dx, dy);
+      };
+      if (index == 2) {
+        let dx = 8;
+        let dy = 12;
+        let fw = f.querySelector('.popup__content-image').clientWidth;
+        let fh = f.querySelector('.popup__content-image').clientHeight;
+        closeButtonPosition(f, btn, fw, fh, dx, dy);
+      }
+    }
+  });
+};
+
 initialCards.forEach((dataCard) => {
   renderCard(dataCard);
 });
-
 
 addButton.addEventListener('click', openPopupAdd);
 editButton.addEventListener('click', openPopupEdit);
@@ -158,3 +181,5 @@ closeImageButton.addEventListener('click', () => closePopup(ImageForm));
 
 popupEdit.addEventListener('submit', formSubmitHandler);
 popupAdd.addEventListener('submit', formSubmitNewCard);
+
+window.addEventListener('resize', resizeHandle);
