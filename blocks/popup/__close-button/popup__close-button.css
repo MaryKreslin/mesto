@@ -6,6 +6,8 @@
   box-sizing: border-box;
   border: none;
   position: absolute;
+  left: calc(100% + 8px);
+  top: -40px;
 }
 
 .popup__close-button:hover {
@@ -18,5 +20,7 @@
     width: 20px;
     height: 20px;
     background-size: 20px 20px;
+    left: calc(100% - 20px);
+    top: -36px;
   }
 }

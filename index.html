@@ -34,8 +34,8 @@
   </footer>
   <!--Форма редактирования профиля-->
   <div class="popup popup_type_edit">
-    <button class="popup__close-button" type="button"></button>
     <form class="popup__content" name="editProfile">
+      <button class="popup__close-button" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <input type="text" class="popup__item popup__item_el_name" id="avatar-name" name="avatar-name" value="">
       <input type="text" class="popup__item popup__item_el_about" id="avatar-about" name="avatar-about" value="">
@@ -44,8 +44,8 @@
   </div>
   <!--Форма добавления новой карточки-->
   <div class="popup popup_type_add">
-    <button class="popup__close-button" type="button"></button>
     <form class="popup__content" name="addCard">
+      <button class="popup__close-button" type="button"></button>
       <h2 class="popup__title">Новое место</h2>
       <input type="text" class="popup__item popup__item_el_name" id="place-name" name="place-name" value=""
         placeholder="Название">
@@ -56,9 +56,9 @@
   </div>
   <!--Форма открытия картинки-->
   <div class="popup popup_type_image">
-    <button class="popup__close-button" type="button"></button>
-    <form name="ImageCard">
-      <figure class="popup__content-image">
+    <form class="popup__content-image" name="ImageCard">
+      <button class="popup__close-button" type="button"></button>
+      <figure class="popup__figure">
         <img class="popup__image" src="#" alt=" ">
         <figcaption class="popup__caption"></figcaption>
       </figure>

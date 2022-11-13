@@ -1,6 +1,10 @@
 .element__image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    margin: auto;
-    align-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin: auto;
+  align-content: center;
+}
+
+.element__image:hover {
+  cursor: pointer;
 }
