@@ -29,8 +29,8 @@ const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImage = document.querySelector('.popup_type_image');
 
-let nameInput = popupEdit.querySelector('.popup__item_el_name');
-let jobInput = popupEdit.querySelector('.popup__item_el_about');
+const nameInput = popupEdit.querySelector('.popup__item_el_name');
+const jobInput = popupEdit.querySelector('.popup__item_el_about');
 const nameInfo = document.querySelector('.profile__name');
 const jobInfo = document.querySelector('.profile__about');
 
@@ -43,7 +43,6 @@ const closeImageButton = popupImage.querySelector('.popup__close-button');
 
 const saveEditButton = popupEdit.querySelector('.popup__save-button');
 const saveAddButton = popupAdd.querySelector('.popup__save-button');
-
 
 const cards = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card').content.querySelector('.element');
