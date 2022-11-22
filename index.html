@@ -36,22 +36,40 @@
   <div class="popup popup_type_edit">
     <form class="popup__content" name="editProfile">
       <button class="popup__close-button" type="button"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" class="popup__item popup__item_el_name" id="avatar-name" name="avatar-name" value="">
-      <input type="text" class="popup__item popup__item_el_about" id="avatar-about" name="avatar-about" value="">
-      <input type="submit" class="popup__save-button" value="Сохранить">
+      <fieldset class="popup__fieldset">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <div class="popup__field">
+          <input type="text" class="popup__item popup__item_el_name" id="avatar-name" name="avatar-name" value=""
+            minlength="2" maxlength="40" required>
+          <span class="popup__item_el_error avatar-name-error"></span>
+        </div>
+        <div class="popup__field">
+          <input type="text" class="popup__item popup__item_el_about" id="avatar-about" name="avatar-about" value=""
+            minlength="2" maxlength="200" required>
+          <span class="popup__item_el_error avatar-about-error"></span>
+        </div>
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </fieldset>
     </form>
   </div>
   <!--Форма добавления новой карточки-->
   <div class="popup popup_type_add">
     <form class="popup__content" name="addCard">
       <button class="popup__close-button" type="button"></button>
-      <h2 class="popup__title">Новое место</h2>
-      <input type="text" class="popup__item popup__item_el_name" id="place-name" name="place-name" value=""
-        placeholder="Название">
-      <input type="text" class="popup__item popup__item_el_about" id="place-link" name="place-link" value=""
-        placeholder="Ссылка на картинку">
-      <input type="submit" class="popup__save-button" value="Создать">
+      <fieldset class="popup__fieldset">
+        <h2 class="popup__title">Новое место</h2>
+        <div class="popup__field">
+          <input type="text" class="popup__item popup__item_el_name" id="place-name" name="place-name" value=""
+            placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__item_el_error place-name-error"></span>
+        </div>
+        <div class="popup__field">
+          <input type="url" class="popup__item popup__item_el_about" id="place-link" name="place-link" value=""
+            placeholder="Ссылка на картинку" required>
+          <span class="popup__item_el_error place-link-error"></span>
+        </div>
+        <button type="submit" class="popup__save-button">Создать</button>
+      </fieldset>
     </form>
   </div>
   <!--Форма открытия картинки-->
@@ -76,6 +94,7 @@
     </div>
   </template>
   <script src="./script/index.js" defer></script>
+  <script src="./script/validate.js"></script>
 </body>
 
 </html>

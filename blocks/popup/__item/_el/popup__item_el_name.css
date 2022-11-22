@@ -1,16 +1,24 @@
 .popup__item_el_name {
-    margin: 48px 0 30px;
-    padding: 0 0 10px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    color: #000000;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, .2);
+  margin: 48px 0 0;
+  padding: 0 0 13px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
+.popup__item_el_name:focus {
+  color: #000000;
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+
 @media (max-width: 550px) {
-    .popup__item_el_name {
-        margin-top: 75px;
-    }
+  .popup__item_el_name {
+    margin-top: 75px;
+  }
 }
