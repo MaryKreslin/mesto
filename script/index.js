@@ -130,14 +130,19 @@ const handleOpenEdit = () => {
   jobInput.value = jobInfo.textContent;
 };
 
-//закрытие нажатием на оверлей
+//закрытие нажатием на оверлей или Esc
 popupList.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) {
       closePopup(popup)
     }
   });
-})
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup)
+    }
+  });
+});
 
 addButton.addEventListener('click', () => openPopup(popupAdd));
 editButton.addEventListener('click', handleOpenEdit);
