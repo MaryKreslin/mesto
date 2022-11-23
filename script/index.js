@@ -24,7 +24,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+const popupList = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImage = document.querySelector('.popup_type_image');
@@ -129,6 +129,15 @@ const handleOpenEdit = () => {
   nameInput.value = nameInfo.textContent;
   jobInput.value = jobInfo.textContent;
 };
+
+//закрытие нажатием на оверлей
+popupList.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup)
+    }
+  });
+})
 
 addButton.addEventListener('click', () => openPopup(popupAdd));
 editButton.addEventListener('click', handleOpenEdit);
