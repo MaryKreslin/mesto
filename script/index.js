@@ -131,17 +131,21 @@ const handleOpenEdit = () => {
 };
 
 //закрытие нажатием на оверлей или Esc
+const handleOverlayClick = (evt, popup) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popup);
+  }
+}
+
+const haldleEscKey = (evt, popup) => {
+  if (evt.key === 'Escape') {
+    closePopup(popup)
+  }
+}
+
 popupList.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup)
-    }
-  });
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup)
-    }
-  });
+  popup.addEventListener('click', (evt) => handleOverlayClick(evt, popup));
+  document.addEventListener('keydown', (evt) => haldleEscKey(evt, popup));
 });
 
 addButton.addEventListener('click', () => openPopup(popupAdd));
