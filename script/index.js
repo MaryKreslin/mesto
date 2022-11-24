@@ -129,6 +129,7 @@ const handleOpenEdit = () => {
   openPopup(popupEdit);
   nameInput.value = nameInfo.textContent;
   jobInput.value = jobInfo.textContent;
+  saveEditButton.classList.remove('popup__save-button_disabled');
 };
 
 //закрытие нажатием на оверлей или Esc
