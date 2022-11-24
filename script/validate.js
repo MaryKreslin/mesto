@@ -3,6 +3,7 @@ const showInputError = (popupElement, inputElement, errorMessage, selectors) => 
   inputElement.classList.add(selectors.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(selectors.errorClass);
+  //popupElement.classList.add('popup__fieldset_invalid');
 };
 
 const hideInputError = (popupElement, inputElement, selectors) => {
@@ -10,6 +11,7 @@ const hideInputError = (popupElement, inputElement, selectors) => {
   inputElement.classList.remove(selectors.inputErrorClass);
   errorElement.classList.remove(selectors.errorClass);
   errorElement.textContent = ' ';
+  //popupElement.classList.remove('popup__fieldset_invalid');
 };
 
 const checkInputValidity = (popupItem, inputElement, selectors) => {
@@ -64,7 +66,7 @@ enableValidation(
     fieldsetSelector: '.popup__fieldset',
     inputSelector: '.popup__item',
     submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: '.popup__save-button_disabled',
-    inputErrorClass: '.popup__item_type_error',
-    errorClass: '.popup__item_el_error'
+    inactiveButtonClass: 'popup__save-button_disabled',
+    inputErrorClass: 'popup__item_type_error',
+    errorClass: 'popup__item_el_error'
   });

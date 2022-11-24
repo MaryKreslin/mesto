@@ -24,7 +24,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const popupList = document.querySelectorAll('.popup');
+
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImage = document.querySelector('.popup_type_image');
@@ -56,6 +56,7 @@ const cap = popupImage.querySelector('.popup__caption');
 //Открытие форм
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+  handleClosePopup(popup);
 }
 
 //Закрытие форм
@@ -143,12 +144,18 @@ const haldleEscKey = (evt, popup) => {
   }
 }
 
-popupList.forEach((popup) => {
+const handleClosePopup = (popup) => {
   popup.addEventListener('click', (evt) => handleOverlayClick(evt, popup));
   document.addEventListener('keydown', (evt) => haldleEscKey(evt, popup));
-});
+}
 
-addButton.addEventListener('click', () => openPopup(popupAdd));
+const handleOpenAdd = () => {
+  openPopup(popupAdd);
+  saveAddButton.classList.add('popup__save-button_disabled');
+}
+
+
+addButton.addEventListener('click', handleOpenAdd);
 editButton.addEventListener('click', handleOpenEdit);
 
 closeEditButton.addEventListener('click', () => closePopup(popupEdit));
