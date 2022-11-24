@@ -125,6 +125,7 @@ initialCards.forEach((dataCard) => {
   renderCard(dataCard);
 });
 
+//Открытие попапов
 const handleOpenEdit = () => {
   openPopup(popupEdit);
   nameInput.value = nameInfo.textContent;
@@ -132,15 +133,23 @@ const handleOpenEdit = () => {
   saveEditButton.classList.remove('popup__save-button_disabled');
 };
 
+const handleOpenAdd = () => {
+  openPopup(popupAdd);
+  inputPlacename.value = '';
+  inputPlaceLink.value = '';
+  saveAddButton.classList.add('popup__save-button_disabled');
+}
 //закрытие нажатием на оверлей или Esc
 const handleOverlayClick = (evt, popup) => {
   if (evt.target === evt.currentTarget) {
+    cleanError(popup);
     closePopup(popup);
   }
 }
 
 const haldleEscKey = (evt, popup) => {
   if (evt.key === 'Escape') {
+    cleanError(popup);
     closePopup(popup)
   }
 }
@@ -150,11 +159,17 @@ const handleClosePopup = (popup) => {
   document.addEventListener('keydown', (evt) => haldleEscKey(evt, popup));
 }
 
-const handleOpenAdd = () => {
-  openPopup(popupAdd);
-  saveAddButton.classList.add('popup__save-button_disabled');
+//Очистка от ошибок
+const cleanError = (popup) => {
+  const errorElements = popup.querySelectorAll('.popup__item_el_error');
+  const inputElements = popup.querySelectorAll('.popup__item');
+  errorElements.forEach((error) => {
+    error.textContent = ' ';
+  });
+  inputElements.forEach((input) => {
+    input.classList.remove('popup__item_type_error')
+  });
 }
-
 
 addButton.addEventListener('click', handleOpenAdd);
 editButton.addEventListener('click', handleOpenEdit);
