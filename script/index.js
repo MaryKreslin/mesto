@@ -1,33 +1,11 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImage = document.querySelector('.popup_type_image');
+
+const formEdit = document.forms.editProfile;
+const formAdd = document.forms.addCard;
+const formImage = document.forms.ImageCard;
 
 const nameInput = popupEdit.querySelector('.popup__item_el_name');
 const jobInput = popupEdit.querySelector('.popup__item_el_about');
@@ -62,6 +40,9 @@ const openPopup = (popup) => {
 //Закрытие форм
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', (evt) => haldleEscKey(evt, popup));
+  popup.removeEventListener('click', (evt) => handleOverlayClick(evt, popup));
+  cleanError(popup, configList);
 }
 
 //Функция сохранения данных и закрытия формы
@@ -114,7 +95,6 @@ const handleNewCardSubmut = (evt) => {
   evt.preventDefault();
   renderCard({ name: inputPlacename.value, link: inputPlaceLink.value });
   closePopup(popupAdd);
-  evt.target.reset();
 }
 
 const renderCard = (dataCard) => {
@@ -130,45 +110,34 @@ const handleOpenEdit = () => {
   openPopup(popupEdit);
   nameInput.value = nameInfo.textContent;
   jobInput.value = jobInfo.textContent;
-  saveEditButton.classList.remove('popup__save-button_disabled');
+  setButtonActive(saveEditButton, configList);
 };
 
 const handleOpenAdd = () => {
   openPopup(popupAdd);
-  inputPlacename.value = '';
-  inputPlaceLink.value = '';
-  saveAddButton.classList.add('popup__save-button_disabled');
+  popupAdd.reset;
+  setButtonDisabled(saveAddButton, configList);
 }
+
 //закрытие нажатием на оверлей или Esc
-const handleOverlayClick = (evt, popup) => {
+const handleOverlayClick = (evt) => {
   if (evt.target === evt.currentTarget) {
-    cleanError(popup);
-    closePopup(popup);
+    cleanError(evt.currentTarget, configList);
+    closePopup(evt.currentTarget);
   }
 }
 
-const haldleEscKey = (evt, popup) => {
+const haldleEscKey = (evt) => {
+  const popup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
-    cleanError(popup);
+    cleanError(popup, configList);
     closePopup(popup)
   }
 }
 
 const handleClosePopup = (popup) => {
-  popup.addEventListener('click', (evt) => handleOverlayClick(evt, popup));
-  document.addEventListener('keydown', (evt) => haldleEscKey(evt, popup));
-}
-
-//Очистка от ошибок
-const cleanError = (popup) => {
-  const errorElements = popup.querySelectorAll('.popup__item_el_error');
-  const inputElements = popup.querySelectorAll('.popup__item');
-  errorElements.forEach((error) => {
-    error.textContent = ' ';
-  });
-  inputElements.forEach((input) => {
-    input.classList.remove('popup__item_type_error')
-  });
+  popup.addEventListener('click', (evt) => handleOverlayClick(evt));
+  document.addEventListener('keydown', haldleEscKey);
 }
 
 addButton.addEventListener('click', handleOpenAdd);
@@ -178,5 +147,5 @@ closeEditButton.addEventListener('click', () => closePopup(popupEdit));
 closeAddButton.addEventListener('click', () => closePopup(popupAdd));
 closeImageButton.addEventListener('click', () => closePopup(popupImage));
 
-popupEdit.addEventListener('submit', handleEditFormSubmit);
-popupAdd.addEventListener('submit', handleNewCardSubmut);
+formEdit.addEventListener('submit', handleEditFormSubmit);
+formAdd.addEventListener('submit', handleNewCardSubmut);

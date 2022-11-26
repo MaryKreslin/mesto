@@ -3,6 +3,8 @@
   aspect-ratio: 1 / 1;
   margin: auto;
   align-content: center;
+  background-color: #000;
+  color: #fff;
 }
 
 .element__image:hover {
