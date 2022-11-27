@@ -40,9 +40,9 @@ const openPopup = (popup) => {
 //Закрытие форм
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', (evt) => haldleEscKey(evt, popup));
-  popup.removeEventListener('click', (evt) => handleOverlayClick(evt, popup));
-  cleanError(popup, configList);
+  document.removeEventListener('keydown', haldleEscKey);
+  popup.removeEventListener('click', handleOverlayClick);
+  cleanErrors(popup, validationConfig);
 }
 
 //Функция сохранения данных и закрытия формы
@@ -110,33 +110,33 @@ const handleOpenEdit = () => {
   openPopup(popupEdit);
   nameInput.value = nameInfo.textContent;
   jobInput.value = jobInfo.textContent;
-  setButtonActive(saveEditButton, configList);
+  setButtonActive(saveEditButton, validationConfig);
 };
 
 const handleOpenAdd = () => {
   openPopup(popupAdd);
   popupAdd.reset;
-  setButtonDisabled(saveAddButton, configList);
+  setButtonDisabled(saveAddButton, validationConfig);
 }
 
 //закрытие нажатием на оверлей или Esc
 const handleOverlayClick = (evt) => {
   if (evt.target === evt.currentTarget) {
-    cleanError(evt.currentTarget, configList);
+    cleanErrors(evt.currentTarget, validationConfig);
     closePopup(evt.currentTarget);
   }
 }
 
 const haldleEscKey = (evt) => {
-  const popup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
-    cleanError(popup, configList);
+    const popup = document.querySelector('.popup_opened');
+    cleanErrors(popup, validationConfig);
     closePopup(popup)
   }
 }
 
 const handleClosePopup = (popup) => {
-  popup.addEventListener('click', (evt) => handleOverlayClick(evt));
+  popup.addEventListener('click', handleOverlayClick);
   document.addEventListener('keydown', haldleEscKey);
 }
 
