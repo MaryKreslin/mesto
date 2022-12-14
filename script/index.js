@@ -41,8 +41,8 @@ const inputPlaceLink = popupAdd.querySelector('#place-link');
 
 
 
-const validation = (popupElement) => {
-  const validator = new FormValidator(validationConfig, popupElement);
+const validation = (popup) => {
+  const validator = new FormValidator(validationConfig, popup);
   validator.enableValidation();
 }
 

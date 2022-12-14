@@ -73,7 +73,6 @@ export class Card {
   }
 
   _closePopup() {
-    console.log(this._ImagePopup);
     this._ImagePopup.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._haldleEscKey);
     this._ImagePopup.removeEventListener('click', this._handleOverlayClick);
