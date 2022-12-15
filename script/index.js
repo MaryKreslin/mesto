@@ -1,6 +1,5 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { cleanErrors, setButtonActive, setButtonDisabled } from "./cleanErrors.js";
 
 const validationConfig = {
   popupSelector: '.popup__content',
@@ -17,7 +16,6 @@ const popupImage = document.querySelector('.popup_type_image');
 
 const formEdit = document.forms.editProfile;
 const formAdd = document.forms.addCard;
-
 
 const nameInput = popupEdit.querySelector('.popup__item_el_name');
 const jobInput = popupEdit.querySelector('.popup__item_el_about');
@@ -39,28 +37,17 @@ const cards = document.querySelector('.elements');
 const inputPlacename = popupAdd.querySelector('#place-name');
 const inputPlaceLink = popupAdd.querySelector('#place-link');
 
-
-
-const validation = (popup) => {
-  const validator = new FormValidator(validationConfig, popup);
-  validator.enableValidation();
-}
-
 //Открытие форм
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
-  validation(popup);
   handleClosePopup(popup);
 }
-
-
 
 //Закрытие форм
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', haldleEscKey);
   popup.removeEventListener('click', handleOverlayClick);
-  cleanErrors(popup, validationConfig);
 }
 
 //Функция сохранения данных и закрытия формы
@@ -71,39 +58,47 @@ const handleEditFormSubmit = (evt) => {
   closePopup(popupEdit);
 }
 
+const createCard = (dataCard) => {
+  const card = new Card(dataCard, '#card');
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 const handleNewCardSubmut = (evt) => {
   evt.preventDefault();
-  const newCard = new Card({ name: inputPlacename.value, link: inputPlaceLink.value }, '#card')
-  const cardElement = newCard.generateCard();
+  const cardElement = createCard({ name: inputPlacename.value, link: inputPlaceLink.value });
   cards.prepend(cardElement);
   closePopup(popupAdd);
 }
 
 initialCards.forEach((dataCard) => {
-  const card = new Card(dataCard, '#card');
-  const cardElement = card.generateCard();
+  const cardElement = createCard(dataCard);
   cards.append(cardElement);
 });
 
 //Открытие попапов
 const handleOpenEdit = () => {
   openPopup(popupEdit);
+  const editProfileValidator = new FormValidator(validationConfig, popupEdit);
+  editProfileValidator.enableValidation();
+  editProfileValidator.setButtonActive(saveEditButton);
+  editProfileValidator.cleanErrors();
   nameInput.value = nameInfo.textContent;
   jobInput.value = jobInfo.textContent;
-  setButtonActive(saveEditButton, validationConfig);
 };
 
 const handleOpenAdd = () => {
   openPopup(popupAdd);
   popupAdd.reset;
-  setButtonDisabled(saveAddButton, validationConfig);
+  const addCardValidator = new FormValidator(validationConfig, popupAdd);
+  addCardValidator.enableValidation();
+  addCardValidator.setButtonDisabled(saveAddButton);
+  addCardValidator.cleanErrors();
 }
 
 //закрытие нажатием на оверлей или Esc
 const handleOverlayClick = (evt) => {
   if (evt.target === evt.currentTarget) {
-    cleanErrors(evt.currentTarget, validationConfig);
     closePopup(evt.currentTarget);
   }
 }
@@ -111,7 +106,6 @@ const handleOverlayClick = (evt) => {
 const haldleEscKey = (evt) => {
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
-    cleanErrors(popup, validationConfig);
     closePopup(popup)
   }
 }

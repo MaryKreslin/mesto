@@ -7,7 +7,9 @@ export class Card {
     this._cardText;
     this._cardImage;
     this._cardLike;
-    this._ImagePopup;
+    this._popupImage = document.querySelector('.popup_type_image');
+    this._imagePopup = this._popupImage.querySelector('.popup__image');
+    this._captionPopup = this._popupImage.querySelector('.popup__caption');
   }
 
   _getTemplate() {
@@ -43,38 +45,34 @@ export class Card {
   }
 
   _handleOpenImage() {
-    this._ImagePopup = document.querySelector('.popup_type_image');
-    const img = this._ImagePopup.querySelector('.popup__image');
-    const cap = this._ImagePopup.querySelector('.popup__caption');
-    this._ImagePopup.classList.add('popup_opened');
-
-    img.src = this._cardImage.src;
-    cap.textContent = this._cardText.textContent;
-    img.alt = this._cardText.textContent;
-
+    this._popupImage.classList.add('popup_opened');
+    this._imagePopup.src = this._cardImage.src;
+    this._captionPopup.textContent = this._cardText.textContent;
+    this._imagePopup.alt = this._cardText.textContent;
     this._setCloseListeners();
   }
 
-  _setCloseListeners() {
-    this._ImagePopup.addEventListener('click', (evt) => { this._handleOverlayClick(evt); });
-    document.addEventListener('keydown', (evt) => { this._haldleEscKey(evt); });
+  _deleteCloseListeners() {
+    this._popupImage.removeEventListener('click', this._handleOverlayClick);
+    document.removeEventListener('keydown', this._haldleEscKey);
   }
 
   _handleOverlayClick(evt) {
     if (evt.target === evt.currentTarget) {
-      this._closePopup();
+      evt.target.classList.remove('popup_opened');
+      this._deleteCloseListeners;
     }
   }
 
   _haldleEscKey(evt) {
     if (evt.key === 'Escape') {
-      this._closePopup();
+      evt.target.querySelector('.popup_opened').classList.remove('popup_opened');
+      this._deleteCloseListeners;
     }
   }
 
-  _closePopup() {
-    this._ImagePopup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._haldleEscKey);
-    this._ImagePopup.removeEventListener('click', this._handleOverlayClick);
+  _setCloseListeners() {
+    this._popupImage.addEventListener('click', this._handleOverlayClick);
+    document.addEventListener('keydown', this._haldleEscKey);
   }
 }
