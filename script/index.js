@@ -37,6 +37,12 @@ const cards = document.querySelector('.elements');
 const inputPlacename = popupAdd.querySelector('#place-name');
 const inputPlaceLink = popupAdd.querySelector('#place-link');
 
+const editProfileValidator = new FormValidator(validationConfig, popupEdit);
+const addCardValidator = new FormValidator(validationConfig, popupAdd);
+
+editProfileValidator.enableValidation();
+addCardValidator.enableValidation();
+
 //Открытие форм
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
@@ -79,8 +85,6 @@ initialCards.forEach((dataCard) => {
 //Открытие попапов
 const handleOpenEdit = () => {
   openPopup(popupEdit);
-  const editProfileValidator = new FormValidator(validationConfig, popupEdit);
-  editProfileValidator.enableValidation();
   editProfileValidator.setButtonActive(saveEditButton);
   editProfileValidator.cleanErrors();
   nameInput.value = nameInfo.textContent;
@@ -90,8 +94,6 @@ const handleOpenEdit = () => {
 const handleOpenAdd = () => {
   openPopup(popupAdd);
   popupAdd.reset;
-  const addCardValidator = new FormValidator(validationConfig, popupAdd);
-  addCardValidator.enableValidation();
   addCardValidator.setButtonDisabled(saveAddButton);
   addCardValidator.cleanErrors();
 }
