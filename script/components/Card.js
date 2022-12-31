@@ -1,12 +1,13 @@
 export class Card {
-  constructor(dataCard, cardSelector) {
-    this._dataCard = dataCard;
+  constructor({ data, handleCardClick }, cardSelector,) {
+    this._data = data;
     this._cardSelector = cardSelector;
     this._card;
     this._trashButton;
     this._cardText;
     this._cardImage;
     this._cardLike;
+    this.handleCardClick = handleCardClick;
     this._popupImage = document.querySelector('.popup_type_image');
     this._imagePopup = this._popupImage.querySelector('.popup__image');
     this._captionPopup = this._popupImage.querySelector('.popup__caption');
@@ -21,10 +22,10 @@ export class Card {
     this._card = this._getTemplate();
     this._trashButton = this._card.querySelector('.element__trash');
     this._cardText = this._card.querySelector('.element__text');
-    this._cardText.textContent = this._dataCard.name;
+    this._cardText.textContent = this._data.name;
     this._cardImage = this._card.querySelector('.element__image');
-    this._cardImage.src = this._dataCard.link;
-    this._cardImage.alt = this._dataCard.name;
+    this._cardImage.src = this._data.link;
+    this._cardImage.alt = this._data.name;
     this._cardLike = this._card.querySelector('.element__like');
     this._setEventListeners();
     return this._card;
@@ -32,7 +33,7 @@ export class Card {
 
   _setEventListeners() {
     this._trashButton.addEventListener('click', () => { this._handleDeleteCard(); });
-    this._cardImage.addEventListener('click', () => { this._handleOpenImage(); });
+    this._cardImage.addEventListener('click', () => { this.handleCardClick(); });
     this._cardLike.addEventListener('click', () => { this._handleLike(); });
   }
 
@@ -42,14 +43,6 @@ export class Card {
 
   _handleDeleteCard() {
     this._card.remove();
-  }
-
-  _handleOpenImage() {
-    this._popupImage.classList.add('popup_opened');
-    this._imagePopup.src = this._cardImage.src;
-    this._captionPopup.textContent = this._cardText.textContent;
-    this._imagePopup.alt = this._cardText.textContent;
-    this._setCloseListeners();
   }
 
   _deleteCloseListeners() {
