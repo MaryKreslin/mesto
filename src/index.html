@@ -4,17 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./page/index.css">
   <title>Место</title>
 </head>
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип Место">
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="./images/custo.jpg" alt="Фото Жак-Ив Кусто">
+      <img class="profile__avatar" src="<%=require('./images/custo.png')%>" alt="Фото Жак-Ив Кусто">
       <div class="profile__info">
         <div class="profile__string">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -93,10 +92,7 @@
       </div>
     </div>
   </template>
-  <!--<script src="./script/dataCards.js" defer></script>
-  <script type="module" src="./script/components/FormValidator.js" defer></script>
-  <script type="module" src="./script/Card.js" defer></script>-->
-  <script type="module" src="./script/pages/index.js" defer></script>
+  
 </body>
 
 </html>

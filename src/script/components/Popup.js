@@ -21,7 +21,7 @@ export default class Popup {
 
   _haldleEscClose(evt) {
     if (evt.key === 'Escape') {
-      evt.target.querySelector('.popup_opened').classList.remove('popup_opened');
+      evt.currentTarget.querySelector('.popup_opened').classList.remove('popup_opened');
     }
   }
 

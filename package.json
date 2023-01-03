@@ -1,0 +1,38 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Учебный проект одностраничного сайта с адаптивной версткой.\r ### Технологии\r Файловая структура по Nested БЭМ. При верстке применены Grid и Flex. При помощи JavaScript реализован вызов формы popup по кнопке редактирования и сохранение информации из него на главной форме, реализовано добавление новой карточки с местом, просмотр изображения при клике на него. Есть возможность поставить лайк под фото. Реализована валидация форм. Используются принципы ООП.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaryKreslin/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaryKreslin/mesto/issues"
+  },
+  "homepage": "https://github.com/MaryKreslin/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.3",
+    "cssnano": "^5.1.14",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "postcss-loader": "^7.0.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "core-js": "^3.27.1"
+  }
+}
