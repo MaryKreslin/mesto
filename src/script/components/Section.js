@@ -2,12 +2,13 @@ export default class Section {
   constructor({ items, renderer }, containerSelector) {
     this._items = items;
     this._renderer = renderer;
-    this._container = containerSelector;
+    this._container = document.querySelector(containerSelector);
+    ;
   }
 
   //принимает DOM-элемент и добавляет его в контейнер
   addItem(element) {
-    document.querySelector(this._container).prepend(element);
+   this._container.prepend(element);
   }
 
   //метод, отвечает за отрисовку всех элементов

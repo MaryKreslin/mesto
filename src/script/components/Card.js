@@ -44,28 +44,4 @@ export class Card {
   _handleDeleteCard() {
     this._card.remove();
   }
-
-  _deleteCloseListeners() {
-    this._popupImage.removeEventListener('click', this._handleOverlayClick);
-    document.removeEventListener('keydown', this._haldleEscKey);
-  }
-
-  _handleOverlayClick(evt) {
-    if (evt.target === evt.currentTarget) {
-      evt.target.classList.remove('popup_opened');
-      this._deleteCloseListeners;
-    }
-  }
-
-  _haldleEscKey(evt) {
-    if (evt.key === 'Escape') {
-      evt.target.querySelector('.popup_opened').classList.remove('popup_opened');
-      this._deleteCloseListeners;
-    }
-  }
-
-  _setCloseListeners() {
-    this._popupImage.addEventListener('click', this._handleOverlayClick);
-    document.addEventListener('keydown', this._haldleEscKey);
-  }
 }

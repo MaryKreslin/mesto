@@ -16,6 +16,8 @@ import {
   addButton,
   saveEditButton,
   saveAddButton,
+  nameInfo,
+  jobInfo
 } from "../script/utils/constants.js";
 import Section from "../script/components/Section.js";
 
@@ -27,12 +29,33 @@ const addCardValidator = new FormValidator(validationConfig, popupAdd);
 editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
 
+const formImage = new PopupWithImage(popupImage);
+const userInfoList = new UserInfo({ nameSelector: nameInfo, infoSelector: jobInfo });
+
+const formEditProfile = new PopupWithForm(popupEdit, {
+  handleFormSubmit: (formValues) => {
+    const newInfo = { name: formValues["avatar-name"], job: formValues["avatar-about"] };
+    userInfoList.setUserInfo(newInfo)
+    formEditProfile.close();
+  }
+});
+
+const formAddCard = new PopupWithForm(popupAdd, {
+  handleFormSubmit: (formValues) => {
+    const newCard = createCard({ name: formValues["place-name"], link: formValues["place-link"] });
+    const cardElement = newCard.generateCard();
+    cardListSection.addItem(cardElement);
+    formAddCard.close();
+  }
+}
+);
+
 const createCard = (data) => {
   const card = new Card({
     data,
     handleCardClick: () => {
-      const formImage = new PopupWithImage(popupImage);
       formImage.open(card._cardText.textContent, card._cardImage);
+      //formImage.setEventListeners();
     }
   },
     '#card');
@@ -55,33 +78,15 @@ cardListSection.renderItems();
 //открытие попапов
 const handleOpenEdit = () => {
   editProfileValidator.cleanErrors();
-  const formEditProfile = new PopupWithForm(popupEdit, {
-    handleFormSubmit: (element) => {
-      const { name, link: job } = element;
-      const newInfo = { name, job };
-      userInfoList.setUserInfo(newInfo)
-      formEditProfile.close();
-    }
-  }
-  );
   formEditProfile.open();
   formEditProfile.setEventListeners();
-  const userInfoList = new UserInfo({ nameSelector: nameInput, infoSelector: jobInput });
   const userInfo = userInfoList.getUserInfo();
+  nameInput.value = userInfo.userName;
+  jobInput.value = userInfo.userJob;
   editProfileValidator.setButtonActive(saveEditButton);
-
 };
 
 const handleOpenAdd = () => {
-  const formAddCard = new PopupWithForm(popupAdd, {
-    handleFormSubmit: (element) => {
-      const newCard = createCard(element);
-      const cardElement = newCard.generateCard();
-      cardListSection.addItem(cardElement);
-      formAddCard.close();
-    }
-  }
-  );
   formAddCard.open();
   formAddCard.setEventListeners();
   addCardValidator.cleanErrors();

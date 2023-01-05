@@ -6,31 +6,32 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._closeButton = this._popupSelector.querySelector('.popup__close-button');
     this._element;
+    this._formValues;
   }
   //собирает данные всех полей формы.
   _getInputValues() {
-    const name = this._popupSelector.querySelector('.popup__item_el_name').value;
-    const link = this._popupSelector.querySelector('.popup__item_el_about').value;
-    this._element = { name, link };
-    return this._element;
+    this._inputList = this._popupSelector.querySelectorAll('.popup__item');
+    this._formValues = {};
+    this._inputList.forEach(input => {
+      this._formValues[input.name] = input.value;
+    });
+    return this._formValues;
   }
 
   _submitFormListener(evt) {
     evt.preventDefault();
     this._element = this._getInputValues();
-    this._handleFormSubmit(this._element);
+    this._handleFormSubmit(this._formValues);
   }
 
   setEventListeners() {
-    document.addEventListener('keydown', super._haldleEscClose);
-    this._popupSelector.addEventListener('click', super._handleOverlayClick);
-    this._closeButton.addEventListener('click', this.close.bind(this));
+    super.setEventListeners();
     this._popupSelector.addEventListener('submit', (evt) => this._submitFormListener(evt), { once: true });
   }
 
   close() {
-    this._popupSelector.classList.remove('popup_opened');
-    super._removeEventListeners();
-    //должен быть сброс формы
+    super.close();
+    this._popupSelector.removeEventListener('submit', (evt) => this._submitFormListener(evt), { once: true });
+    this._popupSelector.querySelector('.popup__content').reset();
   }
 }
