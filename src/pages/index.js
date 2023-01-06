@@ -14,8 +14,6 @@ import {
   jobInput,
   editButton,
   addButton,
-  saveEditButton,
-  saveAddButton,
   nameInfo,
   jobInfo
 } from "../script/utils/constants.js";
@@ -54,8 +52,7 @@ const createCard = (data) => {
   const card = new Card({
     data,
     handleCardClick: () => {
-      formImage.open(card._cardText.textContent, card._cardImage);
-      //formImage.setEventListeners();
+      formImage.open(card.cardText.textContent, card.cardImage);
     }
   },
     '#card');
@@ -83,14 +80,14 @@ const handleOpenEdit = () => {
   const userInfo = userInfoList.getUserInfo();
   nameInput.value = userInfo.userName;
   jobInput.value = userInfo.userJob;
-  editProfileValidator.setButtonActive(saveEditButton);
+  editProfileValidator.setButtonActive();
 };
 
 const handleOpenAdd = () => {
   formAddCard.open();
   formAddCard.setEventListeners();
   addCardValidator.cleanErrors();
-  addCardValidator.setButtonDisabled(saveAddButton);
+  addCardValidator.setButtonDisabled();
 };
 
 editButton.addEventListener('click', handleOpenEdit);

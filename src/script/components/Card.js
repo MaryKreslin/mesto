@@ -4,8 +4,8 @@ export class Card {
     this._cardSelector = cardSelector;
     this._card;
     this._trashButton;
-    this._cardText;
-    this._cardImage;
+    this.cardText;
+    this.cardImage;
     this._cardLike;
     this.handleCardClick = handleCardClick;
     this._popupImage = document.querySelector('.popup_type_image');
@@ -21,11 +21,11 @@ export class Card {
   generateCard() {
     this._card = this._getTemplate();
     this._trashButton = this._card.querySelector('.element__trash');
-    this._cardText = this._card.querySelector('.element__text');
-    this._cardText.textContent = this._data.name;
-    this._cardImage = this._card.querySelector('.element__image');
-    this._cardImage.src = this._data.link;
-    this._cardImage.alt = this._data.name;
+    this.cardText = this._card.querySelector('.element__text');
+    this.cardText.textContent = this._data.name;
+    this.cardImage = this._card.querySelector('.element__image');
+    this.cardImage.src = this._data.link;
+    this.cardImage.alt = this._data.name;
     this._cardLike = this._card.querySelector('.element__like');
     this._setEventListeners();
     return this._card;
@@ -33,7 +33,7 @@ export class Card {
 
   _setEventListeners() {
     this._trashButton.addEventListener('click', () => { this._handleDeleteCard(); });
-    this._cardImage.addEventListener('click', () => { this.handleCardClick(); });
+    this.cardImage.addEventListener('click', () => { this.handleCardClick(); });
     this._cardLike.addEventListener('click', () => { this._handleLike(); });
   }
 
