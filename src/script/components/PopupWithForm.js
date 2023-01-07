@@ -30,13 +30,12 @@ export default class PopupWithForm extends Popup {
   }
 
   _removeEventListeners() {
-    super._removeEventListeners;
+    super._removeEventListeners();
     this._popupSelector.removeEventListener('submit', this._submitFormListener, { once: true });
   }
 
   close() {
-    this._popupSelector.classList.remove('popup_opened');
-    this._removeEventListeners();
+    super.close();
     this._form.reset();
   }
 }
