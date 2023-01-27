@@ -13,13 +13,15 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/custo.png')%>" alt="Фото Жак-Ив Кусто">
+      <div class="profile__avatar-block">
+        <img class="profile__avatar" src="" alt="">
+      </div>
       <div class="profile__info">
         <div class="profile__string">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button class="profile__edit-button" type="button"></button>
         </div>
-        <p class="profile__about">Исследователь океана</p>
+        <p class="profile__about"></p>
       </div>
       <button class="profile__add-button" type="button"></button>
     </section>
@@ -81,6 +83,28 @@
       </figure>
     </form>
   </div>
+  <!--Форма редактирования аватара-->
+  <div class="popup popup_type_editAvatarPhoto">
+    <form class="popup__content" name="editAvatar">
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <fieldset class="popup__fieldset">
+        <div class="popup__field">
+          <input type="url" class="popup__item popup__item_el_about" id="place-link" name="place-link"
+            placeholder="Ссылка на картинку" required>
+          <p class="popup__error place-link-error"></p>
+        </div>
+        <button type="submit" class="popup__save-button">Сохранить</button>
+    </form>
+  </div>
+  <!--Форма подтверждения-->
+  <div class="popup popup_type_confirm">
+    <form class="popup__content-confirm" name="confirm">
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button type="submit" class="popup__save-button">Да</button>
+    </form>
+  </div>
   <!--Шаблон карточки-->
   <template id="card">
     <div class="element">
@@ -88,11 +112,14 @@
       <img class="element__image" src="#" alt="">
       <div class="element__title">
         <p class="element__text"></p>
-        <button class="element__like" type="button"></button>
+        <div class="element__block-like">
+          <button class="element__like" type="button"></button>
+          <p class="element__count-like">0</p>
+        </div>
       </div>
     </div>
   </template>
-  
+
 </body>
 
 </html>
