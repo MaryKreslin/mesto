@@ -66,11 +66,7 @@ export class Card {
     }
   }
 
-  deleteCard() {
-    this._card.remove();
-  }
-
   _handleDeleteCard() {
-    this._handleCardDelete(this._cardData);
+    this._handleCardDelete(this._cardData, this._card);
   }
 }
